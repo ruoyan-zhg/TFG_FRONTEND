@@ -1,0 +1,126 @@
+.u-section-1 {
+    background-image: url("../../../assets/images/sky-views-dubai.jpg");
+    background-position: 50% 100%;
+  }
+  
+  .u-section-1 .u-sheet-1 {
+    min-height: 702px;
+  }
+  
+  .u-section-1 .u-icon-1 {
+    background-image: none;
+    width: 64px;
+    height: 64px;
+    color: rgb(255, 255, 255) !important;
+    margin: 113px auto 0 506px;
+    padding: 13px;
+  }
+  
+  .u-section-1 .u-form-1 {
+    height: 367px;
+    width: 570px;
+    margin: 23px auto 60px;
+  }
+  
+  .u-section-1 .u-label-1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  
+  .u-section-1 .u-input-1 {
+    --radius: 14px;
+    box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  }
+  
+  .u-section-1 .u-label-2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  
+  .u-section-1 .u-input-2 {
+    --radius: 14px;
+    box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  }
+  
+  .u-section-1 .u-form-group-3 {
+    margin-left: 0;
+  }
+  
+  .u-section-1 .u-label-3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  
+  .u-section-1 .u-input-3 {
+    --radius: 14px;
+    box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  }
+  
+  .u-section-1 .u-btn-1 {
+    background-image: none;
+    --radius: 20px;
+  }
+  
+  @media (max-width: 1199px) {
+    .u-section-1 .u-sheet-1 {
+      min-height: 627px;
+    }
+  
+    .u-section-1 .u-icon-1 {
+      margin-top: 124px;
+      margin-left: 406px;
+    }
+  
+    .u-section-1 .u-form-1 {
+      margin-top: 12px;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .u-section-1 .u-icon-1 {
+      margin-top: 136px;
+      margin-left: 307px;
+    }
+  
+    .u-section-1 .u-form-1 {
+      margin-top: 0;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .u-section-1 .u-sheet-1 {
+      min-height: 470px;
+    }
+  
+    .u-section-1 .u-icon-1 {
+      margin-left: 230px;
+    }
+  
+    .u-section-1 .u-form-1 {
+      width: 540px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-1 .u-sheet-1 {
+      min-height: 611px;
+    }
+  
+    .u-section-1 .u-icon-1 {
+      margin-top: 120px;
+      margin-left: 120px;
+    }
+  
+    .u-section-1 .u-form-1 {
+      width: 340px;
+      margin-top: 16px;
+      margin-bottom: 44px;
+    }
+  }
+
+  .sesion{
+    margin-top: 1px;
+    margin-bottom: 1px;
+    position: relative;
+    display: inline-block;
+  }

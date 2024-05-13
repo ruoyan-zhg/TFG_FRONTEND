@@ -1,0 +1,154 @@
+.u-section-1 {
+    background-image: url("../../../assets/images/sky-views-dubai.jpg");
+    background-position: 50% 100%;
+  }
+  
+  .u-section-1 .u-sheet-1 {
+    min-height: 703px;
+  }
+  
+  .u-section-1 .u-icon-1 {
+    width: 64px;
+    background-image: none;
+    height: 64px;
+    color: rgb(255, 255, 255) !important;
+    margin: 118px auto 0 506px;
+    padding: 13px;
+  }
+  
+  .u-section-1 .u-form-1 {
+    height: 346px;
+    width: 570px;
+    margin: -19px auto 0;
+  }
+  
+  .u-section-1 .u-label-1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none solid rgb(255, 255, 255);
+  }
+  
+  .u-section-1 .u-input-1 {
+    --radius: 14px;
+    box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  }
+  
+  .u-section-1 .u-form-group-2 {
+    margin-left: 0;
+  }
+  
+  .u-section-1 .u-label-2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none solid rgb(255, 255, 255);
+  }
+  
+  .u-section-1 .u-input-2 {
+    --radius: 14px;
+    box-shadow: 5px 5px 20px 0 rgba(0,0,0,0.4);
+  }
+  
+  .u-section-1 .u-btn-1 {
+    background-image: none;
+    --radius: 20px;
+    font-size: 1.125rem;
+  }
+  
+  .u-section-1 .u-btn-2 {
+    --radius: 47px;
+    border-style: solid;
+    font-weight: 700;
+    font-size: 1rem;
+    background-image: none;
+    text-decoration: underline !important;
+    margin: -23px auto 60px;
+    padding: 6px 31px 6px 30px;
+  }
+  
+  @media (max-width: 1199px) {
+    .u-section-1 .u-sheet-1 {
+      min-height: 580px;
+    }
+  
+    .u-section-1 .u-icon-1 {
+      margin-top: 52px;
+      margin-left: auto;
+    }
+  
+    .u-section-1 .u-form-1 {
+      margin-top: -32px;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .u-section-1 .u-sheet-1 {
+      min-height: 509px;
+    }
+  
+    .u-section-1 .u-icon-1 {
+      margin-top: 47px;
+      margin-left: 308px;
+    }
+  
+    .u-section-1 .u-form-1 {
+      margin-top: -26px;
+    }
+  
+    .u-section-1 .u-btn-2 {
+      margin-top: -14px;
+      margin-bottom: 46px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .u-section-1 .u-sheet-1 {
+      min-height: 382px;
+    }
+  
+    .u-section-1 .u-icon-1 {
+      margin-top: 36px;
+      margin-left: 231px;
+    }
+  
+    .u-section-1 .u-form-1 {
+      margin-top: -32px;
+      margin-right: initial;
+      margin-left: initial;
+      width: auto;
+    }
+  
+    .u-section-1 .u-btn-2 {
+      margin-top: -23px;
+      margin-bottom: -159px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .u-section-1 .u-sheet-1 {
+      min-height: 508px;
+    }
+  
+    .u-section-1 .u-icon-1 {
+      margin-top: 71px;
+      margin-left: auto;
+    }
+  
+    .u-section-1 .u-form-1 {
+      margin-top: -39px;
+      width: auto;
+      margin-right: initial;
+      margin-left: initial;
+    }
+  
+    .u-section-1 .u-btn-2 {
+      margin-top: -19px;
+      margin-bottom: 39px;
+    }
+  }
+
+  .sesion{
+    margin-top: 1px;
+    margin-bottom: 1px;
+    position: relative;
+    display: inline-block;
+  }
