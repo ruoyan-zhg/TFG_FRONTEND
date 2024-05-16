@@ -443,6 +443,35 @@
   .u-section-1 .u-icon-19 {
     font-size: 0.7em;
   }
+
+  .text-center{
+    text-align: center!important;
+  }
+
+  .paddingx
+  {
+    padding-left: 1rem!important;
+    padding-right: 1rem!important;
+  }
+
+  .margen-arriba{
+    margin-top: 2rem!important;
+  }
+
+  .u-repeater {
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .fade-out {
+    opacity: 0;
+    transform: translateX(-30%);
+  }
+  
+  .fade-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
   
   @media (max-width: 1199px) {
     .u-section-1 .u-sheet-1 {
