@@ -16,6 +16,7 @@ import { MapaItinerarioComponent } from './views/Mapa-Itinerario/mapa-itinerario
 import { MapaRestaurantesComponent } from './views/Mapa-restaurantes/mapa-restaurantes.component';
 import { RegistroComponent } from './views/Registro/registro.component';
 import { RestaurantesComponent } from './views/Restaurantes/restaurantes.component';
+import { MapaComponent } from './views/mapa/mapa.component';
 
 
 
@@ -36,7 +37,8 @@ const routes: Routes = [
   {path: 'mapa-itinerario', component:MapaItinerarioComponent},
   {path: 'mapa-restaurantes', component:MapaRestaurantesComponent},
   {path: 'registro', component:RegistroComponent},
-  {path: 'restaurantes', component:RestaurantesComponent}
+  {path: 'restaurantes', component:RestaurantesComponent},
+  {path: 'mapa', component:MapaComponent}
 ];
 
 @NgModule({

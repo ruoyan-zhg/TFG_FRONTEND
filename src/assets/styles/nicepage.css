@@ -8136,7 +8136,7 @@ section.u-image:not(.u-hover-box),
 }
 @media (min-width: 1200px) {
   .u-xl-mode .u-valign-bottom-xl {
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 }
 @media (min-width: 1200px) and (max-width: 1399px) {

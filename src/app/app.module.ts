@@ -23,6 +23,8 @@ import { RestaurantesComponent } from './views/Restaurantes/restaurantes.compone
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MapaComponent } from './views/mapa/mapa.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     //MapaitinerarioComponent,
     MapaItinerarioComponent,
     MapaRestaurantesComponent,
-    RestaurantesComponent
+    RestaurantesComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,

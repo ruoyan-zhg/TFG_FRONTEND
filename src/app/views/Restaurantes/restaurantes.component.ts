@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 interface Restaurante{
   lugar: string;
   descripcion: string;
   coordenadas: string;
+}
+
+interface CoordenadaMapa {
+  coords: [number, number];
+  name: string;
 }
 
 @Component({
@@ -18,7 +24,7 @@ export class RestaurantesComponent implements OnInit {
   indiceIncial: number = 0;
   indiceFinal: number = 3;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -65,6 +71,24 @@ export class RestaurantesComponent implements OnInit {
     setTimeout(() => {
       if (callback) callback();
     }, 500); // Match the duration of the CSS transition
+  }
+
+  pasarinfo(restaurantes: Restaurante[]){
+    const coordenadas = this.convertirActividadesAcoordenadasMapas(restaurantes);
+    
+    this.router.navigate(['/mapa'], { state: { info: coordenadas } });
+
+  }
+
+
+  convertirActividadesAcoordenadasMapas(restaurantes: Restaurante[]): CoordenadaMapa[] {
+    return restaurantes.map(restaurantes => {
+      const [lat, lon] = restaurantes.coordenadas.split(',').map(coord => parseFloat(coord.trim()));
+      return {
+        coords: [lon, lat], // Asegúrate de que el orden sea [longitud, latitud]
+        name: restaurantes.lugar
+      };
+    });
   }
 
 }
