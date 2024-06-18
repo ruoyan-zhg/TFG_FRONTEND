@@ -1,6 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+interface Actividad {
+  lugar: string;
+  descripcion: string;
+  coordenadas: string;
+}
+
+interface Dia {
+  Manana: Actividad[];
+  Tarde: Actividad[];
+  Noche: Actividad[];
+}
+
+interface Itinerario {
+  dias: Dia[];
+}
+
 @Component({
   selector: 'app-favoritos',
   templateUrl: './favoritos.component.html',
@@ -9,6 +25,7 @@ import { HttpClient } from '@angular/common/http';
 export class FavoritosComponent implements OnInit {
   favoritosActividades: { lugar: string }[] = [];
   favoritosRestaurantes: { lugar: string }[] = [];
+  favoritosItinerarios: Itinerario[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +38,7 @@ export class FavoritosComponent implements OnInit {
           (favoritos: any) => {
             this.favoritosActividades = favoritos.actividades;
             this.favoritosRestaurantes = favoritos.restaurantes;
+            this.favoritosItinerarios = favoritos.itinerarios;
           },
           error => {
             console.error('Error cargando favoritos:', error);

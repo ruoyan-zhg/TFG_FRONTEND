@@ -44,11 +44,20 @@
                   <col width="100%">
                 </colgroup>
                 <tbody class="u-table-alt-grey-5 u-table-body">
-                  <tr style="height: 53px;">
-                    <td class="u-table-cell">Column 1</td>
-                  </tr>
-                  <tr style="height: 46px;">
-                    <td class="u-table-cell">Row 1</td>
+                  <tr *ngFor="let itinerario of favoritosItinerarios">
+                    <td class="u-table-cell">
+                      <div *ngFor="let dia of itinerario.dias">
+                        <div *ngFor="let actividad of dia.Manana">
+                          <p> Lugar: {{actividad.lugar}}, descripción: {{actividad.descripcion}}, coordenadas: {{actividad.coordenadas}}</p>
+                        </div>
+                        <div *ngFor="let actividad of dia.Tarde">
+                          <p> Lugar: {{actividad.lugar}}, descripción: {{actividad.descripcion}}, coordenadas: {{actividad.coordenadas}}</p>
+                        </div>
+                        <div *ngFor="let actividad of dia.Noche">
+                          <p> Lugar: {{actividad.lugar}}, descripción: {{actividad.descripcion}}, coordenadas: {{actividad.coordenadas}}</p>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -78,7 +87,7 @@
 </section>
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-04ba">
   <div class="u-clearfix u-sheet u-sheet-1">
-    <p class="u-small-text u-text u-text-variant u-text-1">H I K E<br>Copyright © 2024
+    <p class="u-small-text u-text u-text-variant u-text-1">H I K E<br>Copyright Â© 2024
     </p>
   </div>
 </footer>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 interface Actividad {
   lugar: string;
@@ -33,7 +34,7 @@ export class ItinerarioComponent implements OnInit {
   itenerarioOriginal: Itinerario = { dias: [] };
   itinerario: Itinerario = { dias: [] };
   index = 0;
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     //this.itinerario = history.state.itinerario || []; // Añadir fallback para actividades
@@ -70,6 +71,26 @@ export class ItinerarioComponent implements OnInit {
       };
     });
   }
+
+  guardarFavorito(itinerario: Itinerario) {
+    const usuarioString = localStorage.getItem('userToken');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.http.post('http://localhost:8000/api/addFavoritoItinerario', { email: usuario.email, itinerario: this.itenerarioOriginal, tipo: 'itinerarios' })
+        .subscribe(
+          response => {
+            alert('Itinerario guardado en favoritos');
+          },
+          error => {
+            console.error('Error guardando favorito:', error);
+          }
+        );
+    } else {
+      alert('Debe iniciar sesión para guardar en favoritos');
+    }
+  
+    console.log('Guardando favorito:', 'Itinerario Día ' + (this.index + 1));
+  }
 }
 
 function convertirItinerarioACoordenadasMapas(itinerario: Itinerario): CoordenadaMapa[] {
@@ -87,8 +108,4 @@ function convertirItinerarioACoordenadasMapas(itinerario: Itinerario): Coordenad
   });
 
   return coordenadasMapas;
-  
-
-} 
-
-
+}
