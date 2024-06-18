@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http'; 
+
 
 interface Actividad {
   lugar: string;
@@ -13,7 +15,6 @@ interface CoordenadaMapa {
   name: string;
 }
 
-
 @Component({
   selector: 'app-actividades',
   templateUrl: './actividades.component.html',
@@ -24,14 +25,12 @@ export class ActividadesComponent implements OnInit {
   mostrarActividades: Actividad[] = [];
   indiceIncial: number = 0;
   indiceFinal: number = 3;
-  
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.actividades = history.state.actividades || []; // Añadir fallback para actividades
     this.updateDisplayedActivities();
-
   }
 
   updateDisplayedActivities() {
@@ -75,14 +74,10 @@ export class ActividadesComponent implements OnInit {
     }, 500); // Match the duration of the CSS transition
   }
 
-  pasarinfo(actividades: Actividad[]){
+  pasarinfo(actividades: Actividad[]) {
     const coordenadas = this.convertirActividadesAcoordenadasMapas(actividades);
-    
     this.router.navigate(['/mapa'], { state: { info: coordenadas } });
-
   }
-
-
 
   convertirActividadesAcoordenadasMapas(actividades: Actividad[]): CoordenadaMapa[] {
     return actividades.map(actividad => {
@@ -93,18 +88,26 @@ export class ActividadesComponent implements OnInit {
       };
     });
   }
+
+  guardarFavorito(actividad: Actividad) {
+    const usuarioString = localStorage.getItem('userToken');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.http.post('http://localhost:8000/api/add-favorito', { email: usuario.email, lugar: actividad.lugar })
+        .subscribe(
+          response => {
+            alert('Actividad guardada en favoritos');
+          },
+          error => {
+            console.error('Error guardando favorito:', error);
+          }
+        );
+    } else {
+      alert('Debe iniciar sesión para guardar en favoritos');
+    }
   
-    
-    
-    
-    
+    console.log('Guardando favorito:', actividad.lugar);
   }
+  
 
- 
-
-
-
-
-
-
-
+}

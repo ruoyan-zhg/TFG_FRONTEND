@@ -24,7 +24,9 @@ export class LoginComponent {
     }).subscribe(
       response => {
         console.log(response);
-        localStorage.setItem('userToken', response.token); // Almacena el token de usuario en localStorage
+        //localStorage.setItem('userToken', response.user); // Almacena el token de usuario en localStorage
+        localStorage.setItem('userToken', JSON.stringify(response.user));
+        console.log('Token almacenado:', localStorage.getItem('userToken'));
         this.showMessage('Se ha iniciado sesión correctamente');
         // Navegar a otra página si es necesario
         // this.router.navigate(['/ruta-deseada']);

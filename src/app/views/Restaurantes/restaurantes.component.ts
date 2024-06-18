@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 
 interface Restaurante{
   lugar: string;
@@ -24,7 +26,7 @@ export class RestaurantesComponent implements OnInit {
   indiceIncial: number = 0;
   indiceFinal: number = 3;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
 
   ngOnInit(): void {
@@ -90,5 +92,26 @@ export class RestaurantesComponent implements OnInit {
       };
     });
   }
+
+  guardarFavorito(restaurantes: Restaurante) {
+    const usuarioString = localStorage.getItem('userToken');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.http.post('http://localhost:8000/api/add-favorito', { email: usuario.email, lugar: restaurantes.lugar })
+        .subscribe(
+          response => {
+            alert('Actividad guardada en favoritos');
+          },
+          error => {
+            console.error('Error guardando favorito:', error);
+          }
+        );
+    } else {
+      alert('Debe iniciar sesión para guardar en favoritos');
+    }
+  
+    console.log('Guardando favorito:', restaurantes.lugar);
+  }
+  
 
 }
