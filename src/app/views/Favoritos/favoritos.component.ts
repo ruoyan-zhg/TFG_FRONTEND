@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FavoritosComponent implements OnInit {
   favoritosActividades: { lugar: string }[] = [];
+  favoritosRestaurantes: { lugar: string }[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +20,7 @@ export class FavoritosComponent implements OnInit {
         .subscribe(
           (favoritos: any) => {
             this.favoritosActividades = favoritos.actividades;
+            this.favoritosRestaurantes = favoritos.restaurantes;
           },
           error => {
             console.error('Error cargando favoritos:', error);

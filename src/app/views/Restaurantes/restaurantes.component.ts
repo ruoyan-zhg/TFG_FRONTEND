@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-
-interface Restaurante{
+interface Restaurante {
   lugar: string;
   descripcion: string;
   coordenadas: string;
@@ -21,13 +20,12 @@ interface CoordenadaMapa {
   styleUrls: ['./restaurantes.component.scss']
 })
 export class RestaurantesComponent implements OnInit {
-  restaurantes:Restaurante[] = [];
+  restaurantes: Restaurante[] = [];
   mostrarRestaurantes: Restaurante[] = [];
   indiceIncial: number = 0;
   indiceFinal: number = 3;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
-
 
   ngOnInit(): void {
     this.restaurantes = history.state.restaurantes || []; // Añadir fallback para actividades
@@ -75,32 +73,29 @@ export class RestaurantesComponent implements OnInit {
     }, 500); // Match the duration of the CSS transition
   }
 
-  pasarinfo(restaurantes: Restaurante[]){
+  pasarinfo(restaurantes: Restaurante[]) {
     const coordenadas = this.convertirActividadesAcoordenadasMapas(restaurantes);
-    
     this.router.navigate(['/mapa'], { state: { info: coordenadas } });
-
   }
 
-
   convertirActividadesAcoordenadasMapas(restaurantes: Restaurante[]): CoordenadaMapa[] {
-    return restaurantes.map(restaurantes => {
-      const [lat, lon] = restaurantes.coordenadas.split(',').map(coord => parseFloat(coord.trim()));
+    return restaurantes.map(restaurante => {
+      const [lat, lon] = restaurante.coordenadas.split(',').map(coord => parseFloat(coord.trim()));
       return {
         coords: [lon, lat], // Asegúrate de que el orden sea [longitud, latitud]
-        name: restaurantes.lugar
+        name: restaurante.lugar
       };
     });
   }
 
-  guardarFavorito(restaurantes: Restaurante) {
+  guardarFavorito(restaurante: Restaurante) {
     const usuarioString = localStorage.getItem('userToken');
     if (usuarioString) {
       const usuario = JSON.parse(usuarioString);
-      this.http.post('http://localhost:8000/api/add-favorito', { email: usuario.email, lugar: restaurantes.lugar })
+      this.http.post('http://localhost:8000/api/add-favorito', { email: usuario.email, lugar: restaurante.lugar, tipo: 'restaurantes' })
         .subscribe(
           response => {
-            alert('Actividad guardada en favoritos');
+            alert('Restaurante guardado en favoritos');
           },
           error => {
             console.error('Error guardando favorito:', error);
@@ -110,8 +105,6 @@ export class RestaurantesComponent implements OnInit {
       alert('Debe iniciar sesión para guardar en favoritos');
     }
   
-    console.log('Guardando favorito:', restaurantes.lugar);
+    console.log('Guardando favorito:', restaurante.lugar);
   }
-  
-
 }

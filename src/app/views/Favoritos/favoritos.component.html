@@ -64,11 +64,8 @@
                   <col width="100%">
                 </colgroup>
                 <tbody class="u-table-alt-grey-5 u-table-body">
-                  <tr style="height: 53px;">
-                    <td class="u-table-cell">Column 1</td>
-                  </tr>
-                  <tr style="height: 46px;">
-                    <td class="u-table-cell">Row 1</td>
+                  <tr *ngFor="let favorito of favoritosRestaurantes">
+                    <td class="u-table-cell">{{ favorito.lugar }}</td>
                   </tr>
                 </tbody>
               </table>
