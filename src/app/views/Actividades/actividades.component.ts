@@ -31,6 +31,7 @@ export class ActividadesComponent implements OnInit {
   ngOnInit(): void {
     this.actividades = history.state.actividades || []; // Añadir fallback para actividades
     this.updateDisplayedActivities();
+    this.guardarHistorial(this.actividades);
   }
 
   updateDisplayedActivities() {
@@ -107,6 +108,28 @@ export class ActividadesComponent implements OnInit {
     }
   
     console.log('Guardando favorito:', actividad.lugar);
+  }
+
+  guardarHistorial(actividades: Actividad[]) {
+
+    // generar un array de actividades.lugar
+    const lugares = actividades.map(actividad => actividad.lugar);
+
+    const usuarioString = localStorage.getItem('userToken');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.http.post('http://localhost:8000/api/add-historial', { email: usuario.email, lugares: lugares, tipo: 'actividades' })
+        .subscribe(
+          response => {
+            console.log('Historial guardado');
+          },
+          error => {
+            console.error('Error guardando historial:', error);
+          }
+        );
+    } else {
+      console.log('Sesion no iniciada')
+    }
   }
   
 

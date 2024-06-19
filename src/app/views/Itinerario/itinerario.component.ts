@@ -43,6 +43,9 @@ export class ItinerarioComponent implements OnInit {
     console.log(this.itenerarioOriginal);
     // solo pasar a itinerario 1 dia para hacer como un carrusel
     this.itinerario.dias.push(this.itenerarioOriginal.dias[0]);
+
+    // almacenar el itinerario original utilizando la peticion
+    this.guardarHistorial(this.itenerarioOriginal);
   }
 
   nextDay() {
@@ -83,6 +86,25 @@ export class ItinerarioComponent implements OnInit {
           },
           error => {
             console.error('Error guardando favorito:', error);
+          }
+        );
+    } else {
+      alert('Debe iniciar sesión para guardar en favoritos');
+    }
+  
+    console.log('Guardando favorito:', 'Itinerario Día ' + (this.index + 1));
+  }
+  guardarHistorial(itinerario: Itinerario) {
+    const usuarioString = localStorage.getItem('userToken');
+    if (usuarioString) {
+      const usuario = JSON.parse(usuarioString);
+      this.http.post('http://localhost:8000/api/addHistorialItinerario', { email: usuario.email, itinerario: this.itenerarioOriginal, tipo: 'itinerarios' })
+        .subscribe(
+          response => {
+            console.log('Historial guardado');
+          },
+          error => {
+            console.error('Error guardando historial:', error);
           }
         );
     } else {
