@@ -48,13 +48,13 @@
                     <td class="u-table-cell">
                       <div *ngFor="let dia of itinerario.dias">
                         <div *ngFor="let actividad of dia.Manana">
-                          <p> Lugar: {{actividad.lugar}}, descripción: {{actividad.descripcion}}, coordenadas: {{actividad.coordenadas}}</p>
+                          <p> Lugar: {{actividad.lugar}} -> {{actividad.descripcion}}</p>
                         </div>
                         <div *ngFor="let actividad of dia.Tarde">
-                          <p> Lugar: {{actividad.lugar}}, descripción: {{actividad.descripcion}}, coordenadas: {{actividad.coordenadas}}</p>
+                          <p> Lugar: {{actividad.lugar}} -> {{actividad.descripcion}}</p>
                         </div>
                         <div *ngFor="let actividad of dia.Noche">
-                          <p> Lugar: {{actividad.lugar}}, descripción: {{actividad.descripcion}}, coordenadas: {{actividad.coordenadas}}</p>
+                          <p> Lugar: {{actividad.lugar}} -> {{actividad.descripcion}}</p>
                         </div>
                       </div>
                     </td>
