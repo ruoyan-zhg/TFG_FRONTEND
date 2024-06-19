@@ -26,8 +26,10 @@ export class FormularioItinerarioComponent {
   evitarItinerario = "";
 
   itinerarios: Itinerario[] = [];
+  loading = false;  // Variable para controlar el estado de carga
 
   enviarFormulario(): void {
+    this.loading = true;  // Mostrar el spinner
     console.log("comienzo");
     this.http.post<any>("http://localhost:8000/api/formularioitinerario", {
       destino: this.destinoItinerario,
@@ -54,6 +56,8 @@ export class FormularioItinerarioComponent {
       // Parsear el JSON limpio
       this.itinerarios = JSON.parse(itinerarios);
       console.log(this.itinerarios);
+
+      this.loading = false;  // Ocultar el spinner
     });
   }
 

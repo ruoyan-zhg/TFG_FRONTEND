@@ -24,8 +24,10 @@ export class FormularioRestaurantesComponent {
   preferenciasRestaurantes="";
   evitarRestaurantes="";
   restaurantes:Restaurante[] = [];
+  loading = false;  // Variable para controlar el estado de carga
 
   enviarFormularioRestaurantes(): void {
+    this.loading = true;  // Mostrar el spinner
     this.http.post<any>("http://localhost:8000/api/formulariorestaurantes", {
       ciudad: this.cuidadRestaurantes,
       zona: this.zonaRestaurantes,
@@ -46,6 +48,8 @@ export class FormularioRestaurantesComponent {
       // Parsear el JSON limpio
       this.restaurantes = JSON.parse(restaurantes);
       console.log(this.restaurantes);
+
+      this.loading = false;  // Ocultar el spinner
 
       // ir a la ventana de actividades y envialrle los datos de thi.actividades
       this.router.navigate(['/restaurantes'], { state: { restaurantes: this.restaurantes } });
