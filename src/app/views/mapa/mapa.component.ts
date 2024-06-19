@@ -40,6 +40,9 @@ export class MapaComponent implements OnInit {
   };
 
   ngOnInit() {
+    this.coordinatesMadrid = history.state.info || [];
+    this.lng = this.coordinatesMadrid[0].coords[0];
+    this.lat = this.coordinatesMadrid[0].coords[1];
     this.map = new mapboxgl.Map({
       accessToken: 'pk.eyJ1Ijoib3NjYXJnMTA3IiwiYSI6ImNscGZveXBxMTFtaTYya3FyYXJqa29oaGgifQ.0H09n35BQJNh8k9nkkbsrg',
       container: 'map',
@@ -48,7 +51,7 @@ export class MapaComponent implements OnInit {
       center: [this.lng, this.lat]
     });
 
-    this.coordinatesMadrid = history.state.info || [];
+    
 
 
     this.map.on('load', () => {
@@ -63,7 +66,7 @@ export class MapaComponent implements OnInit {
         'source': this.coordinatesSourceId,
         'layout': {},
         'paint': {
-          'circle-color': 'green',
+          'circle-color': 'red',
           'circle-radius': 6,
           'circle-stroke-width': 2,
           'circle-stroke-color': 'white'
@@ -74,7 +77,7 @@ export class MapaComponent implements OnInit {
       this.loadInitialCoordinates();
       
       // Generar ruta óptima y añadir al mapa
-      this.generateRoute();
+      //this.generateRoute();
     });
   }
 
