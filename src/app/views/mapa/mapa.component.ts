@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { Feature, FeatureCollection, GeoJsonProperties, Point, LineString } from 'geojson';
@@ -7,7 +6,6 @@ interface CoordenadaMapa {
   coords: [number, number];
   name: string;
 }
-  
 
 @Component({
   selector: 'app-mapa',
@@ -51,27 +49,32 @@ export class MapaComponent implements OnInit {
       center: [this.lng, this.lat]
     });
 
-    
-
-
     this.map.on('load', () => {
       this.map?.addSource(this.coordinatesSourceId, {
         type: 'geojson',
         data: this.geoJsonData
       });
 
-      this.map?.addLayer({
-        'id': this.coordinatesSourceId,
-        'type': 'circle',
-        'source': this.coordinatesSourceId,
-        'layout': {},
-        'paint': {
-          'circle-color': 'red',
-          'circle-radius': 6,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': 'white'
+      this.map?.loadImage(
+        'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png',
+        (error, image) => {
+          if (error) throw error;
+          this.map?.addImage('custom-marker', image as HTMLImageElement);
+          
+          this.map?.addLayer({
+            'id': this.coordinatesSourceId,
+            'type': 'symbol',
+            'source': this.coordinatesSourceId,
+            'layout': {
+              'icon-image': 'custom-marker',
+              'icon-size': 0.5,
+              'text-field': ['get', 'name'],
+              'text-offset': [0, 1.5],
+              'text-anchor': 'top'
+            }
+          });
         }
-      });
+      );
 
       // Añadir puntos iniciales de la variable coordinatesMadrid
       this.loadInitialCoordinates();
@@ -88,7 +91,9 @@ export class MapaComponent implements OnInit {
         type: 'Point',
         coordinates: location.coords
       },
-      properties: {}
+      properties: {
+        name: location.name
+      }
     }));
 
     this.geoJsonData.features = features;
@@ -148,7 +153,9 @@ export class MapaComponent implements OnInit {
           type: 'Point',
           coordinates: location.coords
         },
-        properties: {}
+        properties: {
+          name: location.name
+        }
       });
     });
 
@@ -159,4 +166,3 @@ export class MapaComponent implements OnInit {
     this.generateRoute();
   }
 }
-
