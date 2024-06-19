@@ -93,7 +93,7 @@ export class ActividadesComponent implements OnInit {
     const usuarioString = localStorage.getItem('userToken');
     if (usuarioString) {
       const usuario = JSON.parse(usuarioString);
-      this.http.post('http://localhost:8000/api/add-favorito', { email: usuario.email, lugar: actividad.lugar })
+      this.http.post('http://localhost:8000/api/add-favorito', { email: usuario.email, lugar: actividad.lugar, tipo: 'actividades' })
         .subscribe(
           response => {
             alert('Actividad guardada en favoritos');
