@@ -15,68 +15,48 @@ interface Actividad{
 })
 export class FormularioActividadesComponent {
 
- 
   constructor(private http: HttpClient, private router: Router) {  }
 
-destinoActividades="";
-personasActividades= "";
-ninosActividades="";
-preferenciasActividades="";
-evitarActividades="";
-actividades:Actividad[] = [];
+  destinoActividades = "";
+  personasActividades = "";
+  ninosActividades = "";
+  preferenciasActividades = "";
+  evitarActividades = "";
+  actividades: Actividad[] = [];
+  loading = false;  // Variable para controlar el estado de carga
 
-enviarFormulario(): void {
-  this.http.post<any>("http://localhost:8000/api/formularioactividades", {
-    destino: this.destinoActividades,
-    personas: this.personasActividades,
-    ninos: this.ninosActividades,
-    preferencias: this.preferenciasActividades,
-    evitar: this.evitarActividades
-  }).subscribe(response => {
-    console.log(response);
+  enviarFormulario(): void {
+    this.loading = true;  // Mostrar el spinner
+    this.http.post<any>("http://localhost:8000/api/formularioactividades", {
+      destino: this.destinoActividades,
+      personas: this.personasActividades,
+      ninos: this.ninosActividades,
+      preferencias: this.preferenciasActividades,
+      evitar: this.evitarActividades
+    }).subscribe(response => {
+      console.log(response);
 
-    // Limpiar el texto eliminando los saltos de línea y las comillas escapadas
-    let actividades = response.content
-      .replace(/\n/g, "")
-      .replace(/\\"/g, '"');
+      // Limpiar el texto eliminando los saltos de línea y las comillas escapadas
+      let actividades = response.content
+        .replace(/\n/g, "")
+        .replace(/\\"/g, '"');
 
-    console.log(actividades);
+      console.log(actividades);
 
-    // Parsear el JSON limpio
-    this.actividades = JSON.parse(actividades);
-    console.log(this.actividades);
+      // Parsear el JSON limpio
+      this.actividades = JSON.parse(actividades);
+      console.log(this.actividades);
 
-    // ir a la ventana de actividades y envialrle los datos de thi.actividades
-    this.router.navigate(['/actividades'], { state: { actividades: this.actividades } });
-    
-  });
+      this.loading = false;  // Ocultar el spinner
+
+      // ir a la ventana de actividades y enviarle los datos de thi.actividades
+      this.router.navigate(['/actividades'], { state: { actividades: this.actividades } });
+      
+    }, error => {
+      this.loading = false;  // Ocultar el spinner en caso de error
+      console.error("Error en la solicitud", error);
+    });
+  }
+
+  ngOnInit(): void {}
 }
-
-/*
-enviarFormulario(): void {
-  this.http.post("http://localhost:8000/api/formularioactividades", 
-    {
-      "destino": "madrid",
-      "personas": "2",
-      "ninos": "no viajo con ninos",
-      "preferencias": "museos",
-      "evitar":"parques"
-  }).subscribe(response => {
-    this.actividades = response as any;
-    console.log(this.actividades);
-  });
-}*/
-
-
-ngOnInit(): void {
-  
-}
-
-
-
-
-}
-
-
-
-
